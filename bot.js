@@ -62,7 +62,7 @@ bot.hears("💰 Portfolio", ctx => {
         for (let [key, value] of Object.entries(data.portfolio.totals)) {
           amounts += `${key}: ${value}\n`;
         }
-        ctx.reply(amounts);
+        ctx.replyWithHTML(`<b style="color: red">PORTFOLIO</b>\n\n${amounts}`);
       })
       .catch(err => {
         console.log(err);
