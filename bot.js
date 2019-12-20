@@ -3,11 +3,19 @@ const fetch = require("node-fetch");
 const Telegraf = require("telegraf");
 const Markup = require("telegraf/markup");
 const admin = require("firebase-admin");
+const Shell = require("node-powershell");
 const serviceAccount = require(process.env["FIREBASE_CREDS_CENT"]);
 
 const bot = new Telegraf(process.env["TELEGRAM_TOKEN"]);
 const CRYPTOPANIC_API_KEY = process.env["CRYPTOPANIC_KEY"];
+const centFolder = process.env["CENT_FOLDER"];
 const cpanicURL = `https://cryptopanic.com/api/v1/portfolio/?auth_token=${CRYPTOPANIC_API_KEY}`;
+
+const ps = new Shell({
+  verbose: true,
+  executionPolicy: "Bypass",
+  noProfile: true
+});
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
@@ -83,7 +91,19 @@ bot.hears("🆕 Account", ctx => {
   });
 });
 
-bot.hears("💻 Start Clicking", ctx => ctx.reply("Disabled for now 🤷🏻‍♂️"));
-bot.hears("🤑 Sum it up!", ctx => ctx.reply("Disabled for now 🤷🏻‍♂️"));
+bot.hears("💻 Start Clicking", ctx => {
+  ctx.reply("Ok, just a second...");
+  ps.addCommand(`${centFolder}; py app.py`);
+  ps.invoke()
+    .then(() => ctx.reply("Started clicking!"))
+    .catch(err => ctx.reply(`Finished clicking!`));
+});
+bot.hears("🤑 Sum it up!", ctx => {
+  ctx.reply("Ok, just a second...");
+  ps.addCommand(`${centFolder}; py sum.py`);
+  ps.invoke()
+    .then(() => ctx.reply("Started summing up!"))
+    .catch(err => ctx.reply(`Done summing!`));
+});
 
 bot.launch();
