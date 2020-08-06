@@ -6,6 +6,7 @@ const CRYPTOPANIC_API_KEY = process.env.CRYPTOPANIC_KEY;
 const cpanicURL = `https://cryptopanic.com/api/v1/portfolio/?auth_token=${CRYPTOPANIC_API_KEY}`;
 
 bot.command("portfolio", (ctx) => {
+  ctx.reply("test madafaka");
   let coins = fetch(cpanicURL);
   coins.then((res) => {
     if (res.status !== 200) {
