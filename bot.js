@@ -6,6 +6,7 @@ const CRYPTOPANIC_API_KEY = process.env.CRYPTOPANIC_KEY;
 const cpanicURL = `https://cryptopanic.com/api/v1/portfolio/?auth_token=${CRYPTOPANIC_API_KEY}`;
 
 bot.command("portfolio", (ctx) => {
+  ctx.replyWithHTML(`<b style="color: red">PORTFOLIO</b>\n\n`);
   let coins = fetch(cpanicURL);
   coins.then((res) => {
     if (res.status !== 200) {
@@ -19,7 +20,7 @@ bot.command("portfolio", (ctx) => {
         for (let [key, value] of Object.entries(data.portfolio.totals)) {
           amounts += `${key}: ${value}\n`;
         }
-        ctx.replyWithHTML(`<b style="color: red">PORTFOLIO</b>\n\n${amounts}`);
+        ctx.replyWithHTML(`${amounts}`);
       })
       .catch((err) => {
         console.log(err);
