@@ -1,9 +1,6 @@
 const fetch = require("node-fetch");
 const { Composer } = require("micro-bot");
-const Telegraf = require("telegraf");
-const Markup = require("telegraf/markup");
 
-// const bot = new Telegraf(process.env["TELEGRAM_TOKEN"]);
 const bot = new Composer;
 const CRYPTOPANIC_API_KEY = process.env["CRYPTOPANIC_KEY"];
 const cpanicURL = `https://cryptopanic.com/api/v1/portfolio/?auth_token=${CRYPTOPANIC_API_KEY}`;
