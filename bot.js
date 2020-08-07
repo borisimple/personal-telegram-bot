@@ -1,7 +1,7 @@
 const fetch = require("node-fetch");
 const { Composer, Markup } = require("micro-bot");
 
-const bot = new Composer;
+const bot = new Composer();
 const CRYPTOPANIC_API_KEY = process.env.CRYPTOPANIC_KEY;
 const cpanicURL = `https://cryptopanic.com/api/v1/portfolio/?auth_token=${CRYPTOPANIC_API_KEY}`;
 
@@ -19,6 +19,7 @@ bot.command("start", ({ reply }) => {
 });
 
 bot.hears("💰 Portfolio", (ctx) => {
+  ctx.reply(`Date: ${new Date().toLocaleDateString()}`);
   let coins = fetch(cpanicURL);
   coins.then((res) => {
     if (res.status !== 200) {
@@ -41,4 +42,4 @@ bot.hears("💰 Portfolio", (ctx) => {
   });
 });
 
-module.exports = bot
+module.exports = bot;
