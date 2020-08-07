@@ -1,5 +1,5 @@
 const fetch = require("node-fetch");
-const Markup, { Composer } = require("micro-bot");
+const { Composer, Markup } = require("micro-bot");
 
 const bot = new Composer;
 const CRYPTOPANIC_API_KEY = process.env.CRYPTOPANIC_KEY;
