@@ -1,5 +1,6 @@
 const fetch = require("node-fetch");
 const { Composer, Markup } = require("micro-bot");
+const fb = require("./firebase");
 
 const bot = new Composer();
 const CRYPTOPANIC_API_KEY = process.env.CRYPTOPANIC_KEY;
@@ -9,7 +10,7 @@ bot.command("start", ({ reply }) => {
   return (
     reply(
       `How can I help you? 🤔`,
-      Markup.keyboard([["💰 Portfolio"]])
+      Markup.keyboard([["💰 Portfolio", "٪ Prediction"]])
         .oneTime()
         .resize()
         .extra()
@@ -39,6 +40,13 @@ bot.hears("💰 Portfolio", (ctx) => {
         console.log(err);
         ctx.reply(`Error occurred: ${err}`);
       });
+  });
+});
+
+bot.hears("٪ Prediction", (ctx) => {
+  ctx.reply("What % should I set up?\n");
+  bot.on("text", (ctx) => {
+    fb.updatePercentage(ctx.message.text);
   });
 });
 
