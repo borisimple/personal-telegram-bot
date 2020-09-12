@@ -46,7 +46,7 @@ bot.hears("💰 Portfolio", (ctx) => {
 bot.hears("٪ Prediction", (ctx) => {
   ctx.reply("What % should I set up?\n");
   bot.on("text", (ctx) => {
-    typeof ctx.message.text != "number"
+    parseInt(ctx.message.text) == NaN
       ? ctx.reply("You need to reply with a % number!")
       : fb.updatePercentage(parseInt(ctx.message.text));
   });
