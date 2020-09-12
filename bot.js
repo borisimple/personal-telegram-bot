@@ -48,7 +48,7 @@ bot.hears("٪ Prediction", (ctx) => {
   bot.on("text", (ctx) => {
     typeof ctx.message.text != "number"
       ? ctx.reply("You need to reply with a % number!")
-      : fb.updatePercentage(ctx.message.text);
+      : fb.updatePercentage(parseInt(ctx.message.text));
   });
 });
 
