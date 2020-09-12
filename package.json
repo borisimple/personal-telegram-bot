@@ -15,7 +15,8 @@
 	"author": "borisimple",
 	"license": "ISC",
 	"dependencies": {
+		"firebase-admin": "^9.1.1",
 		"micro-bot": "^2.5.3",
-		"node-fetch": "^2.6.0"
+		"node-fetch": "^2.6.1"
 	}
 }
