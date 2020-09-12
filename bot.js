@@ -46,7 +46,9 @@ bot.hears("💰 Portfolio", (ctx) => {
 bot.hears("٪ Prediction", (ctx) => {
   ctx.reply("What % should I set up?\n");
   bot.on("text", (ctx) => {
-    fb.updatePercentage(ctx.message.text);
+    typeof ctx.message.text != "number"
+      ? ctx.reply("You need to reply with a % number!")
+      : fb.updatePercentage(ctx.message.text);
   });
 });
 
