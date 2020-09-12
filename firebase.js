@@ -1,4 +1,4 @@
-const admin = require("firebase-admin");
+var admin = require("firebase-admin");
 
 admin.initializeApp({
   credential: admin.credential.cert({
@@ -9,13 +9,16 @@ admin.initializeApp({
   databaseURL: process.env.FIREBASE_COINRANKINGPP_DB_URL,
 });
 
-const db = admin.firestore();
+var db = admin.firestore();
 
-async function getCurrentPct(db) {
-  const snapshot = await db.collection("prediction").get();
-  snapshot.forEach((doc) => {
-    console.log(doc.id, "=>", doc.data().percentage);
+updatePercentage(db, 10);
+
+async function updatePercentage(db, pct) {
+  const objectToUpdate = await db.collection("prediction");
+  const objectRef = await db.collection("prediction").get();
+  objectRef.forEach((oneAndOnly) => {
+    objectToUpdate
+      .doc(oneAndOnly.id)
+      .set({ percentage: pct, date: new Date() });
   });
 }
-
-getCurrentPct(db);
