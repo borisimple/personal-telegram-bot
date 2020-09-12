@@ -1,22 +1,25 @@
 {
-	"name": "personal_telegram_bot",
-	"version": "1.0.0",
-	"description": "Personal Telegram Bot",
-	"main": "bot.js",
-	"scripts": {
-		"start": "micro-bot",
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"keywords": [
-		"bot",
-		"telegram",
-		"bot"
-	],
-	"author": "borisimple",
-	"license": "ISC",
-	"dependencies": {
-		"firebase-admin": "^9.1.1",
-		"micro-bot": "^2.5.3",
-		"node-fetch": "^2.6.1"
-	}
+  "name": "personal_telegram_bot",
+  "version": "1.0.0",
+  "description": "Personal Telegram Bot",
+  "main": "bot.js",
+  "scripts": {
+    "start": "micro-bot",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "bot",
+    "telegram",
+    "bot"
+  ],
+  "author": "borisimple",
+  "license": "ISC",
+  "dependencies": {
+    "firebase-admin": "^9.1.1",
+    "micro-bot": "^2.5.3",
+    "node-fetch": "^2.6.1"
+  },
+  "engines": {
+    "node": "12.x"
+  }
 }
