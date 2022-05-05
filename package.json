@@ -17,7 +17,7 @@
   "dependencies": {
     "firebase-admin": "^9.1.1",
     "micro-bot": "^2.5.3",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.7"
   },
   "engines": {
     "node": "12.x"
